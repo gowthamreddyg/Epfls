@@ -13,7 +13,7 @@ const Charts=(props)=>{
 			dispatch(teams());
 			dispatch(matches());
 	},[]);
-	let teamCodes = "";
+	let teamCodes = [];
     let output = { clubs: [] };
     if (teamList && teamList.clubs) {
       teamCodes = teamList.clubs.map(e => e["name"]);
@@ -31,14 +31,9 @@ const Charts=(props)=>{
               return element.name === e;
             }); 
             if (ef.team1.name == e) {
-              var totalMatch = output.clubs[codeIndex].total_matches
-                ? Number(output.clubs[codeIndex].total_matches)
-                : 0;  
-              var totalGoals = output.clubs[codeIndex].total_goals
-                ? Number(output.clubs[codeIndex].total_goals)
-                : 0;
-              var AgainstGoals = output.clubs[codeIndex].against_goals
-                ? Number(output.clubs[codeIndex].against_goals)
+              var totalMatch = output.clubs[codeIndex].total_matches? Number(output.clubs[codeIndex].total_matches): 0;  
+              var totalGoals = output.clubs[codeIndex].total_goals? Number(output.clubs[codeIndex].total_goals): 0;
+              var AgainstGoals = output.clubs[codeIndex].against_goals? Number(output.clubs[codeIndex].against_goals)
                 : 0;
               var totalWon = output.clubs[codeIndex].won
                 ? Number(output.clubs[codeIndex].won)
@@ -102,6 +97,7 @@ const Charts=(props)=>{
     var MatchTableData = [];
     if (output) {
       output.clubs.forEach((object, index) => {
+        if(object.code)
         MatchTableData.push(
           <tr>
             <td>{object.code}</td>
