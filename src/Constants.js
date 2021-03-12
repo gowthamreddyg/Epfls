@@ -1,0 +1,6 @@
+
+export const ACTION = {
+	GET_ERRORS : "GET_ERRORS",
+	GET_MATCH : "GET_MATCH",
+	GET_TEAM : "GET_TEAM"
+}
